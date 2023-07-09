@@ -19,3 +19,9 @@ Homestead.json
 
 
 mysql/
+
+.vscode/settings.json
+
+composer.json
+
+composer.lock
