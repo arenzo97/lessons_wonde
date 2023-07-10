@@ -7,6 +7,7 @@
         <title>Wonde Lessons</title>
 
         <link rel = "stylesheet" href="{{ asset('css/app.css') }}">
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body >
         <div class="w-full h-screen">

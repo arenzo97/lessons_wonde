@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClassesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,7 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('home');
 });
+
+
+//routes for lessons features
+Route::resource('classes',ClassesController::class);

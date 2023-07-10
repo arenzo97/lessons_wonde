@@ -4,27 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Books Library</title>
+        <title>My Timetable</title>
         <link rel = "stylesheet" href="{{ asset('css/app.css') }}">
     </head>
     <body>
     <div class="w-full h-screen">
-        <!-- Search bar -->
-        <!-- <div class="pt-20 py-10 text-center">
-            <form action="/books/search" method="GET" role="search">
-            @error('query')<p class="text-red-600">{{ $message }}</p>@enderror
-            <div>
-                <input class="border-2 border-gray-300 bg-white h-10 px-5 w-1/2 rounded-lg text-sm focus:outline-none" type="text" class="form-control" name="query" id="query"
-                    placeholder="Search for title or author"> 
-                <span class="input-group-btn">
-                    <button class="bg-blue-400 h-10 text-white rounded-lg text-sm py-2 px-4"type="search">
-                    search
-                </button>
-                    
-                </span>
-            </div>
-            </form>
-        </div> -->
 
             <!-- Description -->
             <div class="mx-20 py-10 text-center">
