@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Class;
+use App\Models\ClassModel;
 use Illuminate\Http\Request;
 use App\Services\ClientService;
 
@@ -12,12 +12,30 @@ class ClassesController extends Controller
         $client = new ClientService('eb7e721ab2a10d42f56d4da4f85b5f5c5c569137:');
         $request = $client->getClient();
         $this->school = $request->school('A1930499544');
-        // $teacher = $this->school->employees->get('A269983963',['classes']);
 
         $teacher = $this->getTeacher();
         $classes = $this->getClasses($teacher);
+        $lessons = [];
         
-        return view('timetable', ['classes' => $classes]);
+        foreach($classes as $class)
+        {
+            $lessonData=[];
+
+            $lessonData['name'] = $class->name;
+            foreach ($class->lessons->data as $lesson) {
+                $lessonData['start_at'] = $lesson->start_at->date;
+                $lessons[] = $lessonData;
+            }
+            
+        }
+        usort($lessons, function ($a, $b) {
+            $dateA = strtotime($a['start_at']);
+            $dateB = strtotime($b['start_at']);
+        
+            return $dateA - $dateB;
+        });
+        
+        return view('timetable', ['classes' => $lessons]);
     }
 
     private function getTeacher()
@@ -32,7 +50,7 @@ class ClassesController extends Controller
         $classes = [];
         foreach($employee->classes->data as $class)
         {
-            $classes[]=$this->school->classes->get($class->id);
+            $classes[]=$this->school->classes->get($class->id,['lessons']);
         }
        
         return $classes;

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClassesController;
+use App\Http\Controllers\StudentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,5 @@ Route::get('/home', function () {
 
 //routes for lessons features
 Route::resource('classes',ClassesController::class);
+
+Route::resource('students',StudentsController::class);

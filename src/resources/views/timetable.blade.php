@@ -6,6 +6,7 @@
 
         <title>Timetable</title>
         <link rel = "stylesheet" href="{{ asset('css/app.css') }}">
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
         <body>
             <div class="w-full h-screen">
@@ -22,21 +23,22 @@
                     <table class="border-collapse w-full"> 
                         <thead>
                             <!-- Title and Author column headers sorts the view depending on which on is selected -->
-                            <th class="p-3 font-bold uppercase bg-blue-200 text-gray-600 border border-gray-300 hidden lg:table-cell"><a href="{{ url('/timetable/sort/title') }}">Title</a></th>
-                            <th class="p-3 font-bold uppercase bg-blue-200 text-gray-600 border border-gray-300 hidden lg:table-cell"><a href="{{ url('/timetable/sort/author') }}">Author</a></th>
-                            <th class="p-3 font-bold uppercase bg-blue-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Action</th>
+                            <th class="p-3 font-bold uppercase bg-blue-200 text-gray-600 border border-gray-300 hidden lg:table-cell"><a href="{{ url('/timetable/sort/title') }}">Time</a></th>
+                            <th class="p-3 font-bold uppercase bg-blue-200 text-gray-600 border border-gray-300 hidden lg:table-cell"><a href="{{ url('/timetable/sort/author') }}">Class</a></th>
                         </thead>
                         <tbody>
                         @foreach ($classes as $class)
                             <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
                                 <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                     <!-- Header when in mobile/small screen view -->
-                                    <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{{ $class->name }}</span>
+                                    <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{{ $class['start_at'] }}</span>
+                                    {{ $class['start_at'] }}
                                     
                                 </td>
                                 
                                 <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
+                                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{{ $class['name'] }}</span>
+                                <a href="{{ url('/class', ['id' => $class['id']]) }}">{{ $class['name'] }}</a>
                                 </td>
                                 <td>
                                 </td>

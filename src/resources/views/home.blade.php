@@ -21,14 +21,10 @@
                     <div>
 
                         <!-- Create a book page button -->
-                        <a href="{{ config('app.url')}}/user/timetable" class="font-bold rounded-md text-gray-600 text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-200 mr-2">
-                            View Timetable
+                        <a href="{{ config('app.url')}}/dashboard" class="font-bold rounded-md text-gray-600 text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-200 mr-2">
+                            View Employee Dashboard
                         </a>
 
-                        <!-- View library page button -->
-                        <a href="{{ config('app.url')}}/logout" class="font-bold rounded-md text-gray-600 text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-200 ml-2">
-                            Logout
-                        </a>
                     </div>
                 </div>
             </div>

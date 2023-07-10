@@ -45,9 +45,8 @@ class WondeApiTest extends TestCase
         $client = new ClientService('eb7e721ab2a10d42f56d4da4f85b5f5c5c569137:');
         $request = $client->getClient();
         $this->school = $request->school('A1930499544');
-        // Get classes
+        // Get teachers
         $teachers = $this->school->employees->all();
-
 
         print_r(json_decode(json_encode($teachers)));
         $this->assertIsObject($teachers);
@@ -62,16 +61,51 @@ class WondeApiTest extends TestCase
         $teacher = $this->school->employees->get('A269983963',['classes']);
 
 
-        print_r(json_decode(json_encode($teacher)));
+        // print_r(json_decode(json_encode($teacher)));
         $this->assertIsObject($teacher);
     }
 
-    // public function test_authenticate_get_teachers()
-    // {
-    //     $client = new \Wonde\Client('eb7e721ab2a10d42f56d4da4f85b5f5c5c569137:');
-
-    //     $school = $client->school('A1930499544');
-    //     $this->assertIsObject($school);
-    // }
+    public function test_get_classes()
+    {
+        $client = new ClientService('eb7e721ab2a10d42f56d4da4f85b5f5c5c569137:');
+        $request = $client->getClient();
+        $this->school = $request->school('A1930499544');
+        // Get classes
+        $teacher = $this->school->employees->get('A269983963',['classes']);
+        $classes = [];
+        foreach($teacher->classes->data as $class)
+        {
+            $classes[]=$this->school->classes->get($class->id);
+        }
+       
+        $this->assertIsObject($teacher);
+    }
+    public function test_get_lessons()
+    {
+        $client = new ClientService('eb7e721ab2a10d42f56d4da4f85b5f5c5c569137:');
+        $request = $client->getClient();
+        $this->school = $request->school('A1930499544');
+        // Get classes
+        $teacher = $this->school->employees->get('A269983963',['classes']);
+        $classes = [];
+        foreach($teacher->classes->data as $class)
+        {
+            $classes[]=$this->school->classes->get($class->id,['lessons']);
+        }
+       
+        $this->assertIsArray($classes);
+    }
+    public function test_get_students()
+    {
+        $client = new ClientService('eb7e721ab2a10d42f56d4da4f85b5f5c5c569137:');
+        $request = $client->getClient();
+        $this->school = $request->school('A1930499544');
+        // Get students
+        $students = $this->school->students->all();
+     
+        print_r($students);
+       
+        $this->assertIsObject($students);
+    }
 
 }
