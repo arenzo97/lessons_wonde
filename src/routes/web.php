@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,15 +17,14 @@ use App\Http\Controllers\StudentsController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/home', function () {
     return view('home');
 });
 
+//routes for lessons features
+Route::get('dashboard',[DashboardController::class,'index']);
+
 
 //routes for lessons features
-Route::resource('classes',ClassesController::class);
+Route::get('classes/{teacher_id}',[ClassesController::class,'index']);
 
-Route::resource('students',StudentsController::class);
+Route::get('classes/students/{class_id}',[StudentsController::class,'index']);

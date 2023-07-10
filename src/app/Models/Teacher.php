@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-class ClassModel extends Model
+class Teacher extends Model
 {
     use HasFactory;
 
@@ -16,6 +16,6 @@ class ClassModel extends Model
      * @var array<int, string>
      * 
      */
-    protected $guarded = [''];
+    protected $guarded = ['id'];
 
 }

@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'production'),
+    'env' => env('APP_ENV', 'local'),
 
     /*
     |--------------------------------------------------------------------------
@@ -193,5 +193,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // ...
     ])->toArray(),
+
+    'wonde_api_token'=>env('WONDE_API_TOKEN','eb7e721ab2a10d42f56d4da4f85b5f5c5c569137'),
+    'wonde_school_token'=>env('WONDE_SCHOOL_TOKEN','A1930499544'),
 
 ];

@@ -20,7 +20,7 @@
                     <h2 class="font-bold text-3xl mb-12">by Luis Lorenzo Arenas</h2>
                     <div>
 
-                        <!-- Create a book page button -->
+                        <!-- Create a dashboard page button -->
                         <a href="{{ config('app.url')}}/dashboard" class="font-bold rounded-md text-gray-600 text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-200 mr-2">
                             View Employee Dashboard
                         </a>

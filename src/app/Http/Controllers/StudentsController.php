@@ -7,13 +7,15 @@ use App\Services\ClientService;
 
 class StudentsController extends Controller
 {
-    public function index()
+    public function index($class_id)
     {
-        $client = new ClientService('eb7e721ab2a10d42f56d4da4f85b5f5c5c569137:');
+        $wondeApiKey = $_ENV['WONDE_API_KEY'];
+        $wondeSchoolKey = $_ENV['WONDE_SCHOOL_KEY'];
+        $client = new ClientService($wondeApiKey);
         $request = $client->getClient();
-        $this->school = $request->school('A1930499544');
+        $this->school = $request->school($wondeSchoolKey);
 
-        $class = $this->getClass('A1625219959');
+        $class = $this->getClass($class_id);
         $students = $this->getStudents($class);
 
         return view('students', ['students' => $students]);
@@ -27,8 +29,7 @@ class StudentsController extends Controller
 
     public function getStudents($class)
     {
-        
-        
+
         $students = [];
         foreach($class->students->data as $student)
         {

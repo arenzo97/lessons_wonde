@@ -7,6 +7,7 @@ use App\Services\WondeSchoolService;
 use App\Services\ClientService;
 class WondeApiTest extends TestCase
 {
+    
     /**
      * A basic test example.
      *
@@ -14,62 +15,70 @@ class WondeApiTest extends TestCase
      */
     public function test_request_client()
     {
-        // $client = new WondeSchoolService();
-        // $request = $client->getClient();
-        $client = new ClientService('eb7e721ab2a10d42f56d4da4f85b5f5c5c569137:');
+        
+        $wondeApiKey = $_ENV['WONDE_API_KEY'];
+        $wondeSchoolKey = $_ENV['WONDE_SCHOOL_KEY'];
+        $client = new ClientService($wondeApiKey);
         $request = $client->getClient();
-        print_r((array)$request);
         $this->assertIsObject($request);
     }
     public function test_request_access_authenticate_school()
     {
-        
-        $client = new ClientService('eb7e721ab2a10d42f56d4da4f85b5f5c5c569137:');
+        $wondeApiKey = $_ENV['WONDE_API_KEY'];
+        $wondeSchoolKey = $_ENV['WONDE_SCHOOL_KEY'];
+        $client = new ClientService($wondeApiKey);
         $request = $client->getClient();
-        $response = (array)$request->requestAccess('A1930499544');
-        print_r($response);
+        $response = (array)$request->requestAccess($wondeSchoolKey);
         $this->assertContains('approved',$response);
     }
 
     public function test_get_school()
     {
-        $client = new \Wonde\Client('eb7e721ab2a10d42f56d4da4f85b5f5c5c569137:');
-        $school = (array)$client->schools->get('A1930499544');
+        $wondeApiKey = $_ENV['WONDE_API_KEY'];
+        $wondeSchoolKey = $_ENV['WONDE_SCHOOL_KEY'];
+        $client = new ClientService($wondeApiKey);
+        $request = $client->getClient();
+        $school = (array)$request->schools->get($wondeSchoolKey);
         
-        // print_r($school);
         $this->assertContains('A1930499544',$school);
     }
 
     public function test_get_teachers()
     {
-        $client = new ClientService('eb7e721ab2a10d42f56d4da4f85b5f5c5c569137:');
+        $wondeApiKey = $_ENV['WONDE_API_KEY'];
+        $wondeSchoolKey = $_ENV['WONDE_SCHOOL_KEY'];
+        $client = new ClientService($wondeApiKey);
         $request = $client->getClient();
-        $this->school = $request->school('A1930499544');
+        $this->school = $request->school($wondeSchoolKey);
         // Get teachers
         $teachers = $this->school->employees->all();
 
-        print_r(json_decode(json_encode($teachers)));
+        // print_r(json_decode(json_encode($teachers)));
         $this->assertIsObject($teachers);
     }
 
     public function test_get_teacher_classes()
     {
-        $client = new ClientService('eb7e721ab2a10d42f56d4da4f85b5f5c5c569137:');
+        $wondeApiKey = $_ENV['WONDE_API_KEY'];
+        $wondeSchoolKey = $_ENV['WONDE_SCHOOL_KEY'];
+        $client = new ClientService($wondeApiKey);
         $request = $client->getClient();
-        $this->school = $request->school('A1930499544');
+        $this->school = $request->school($wondeSchoolKey);
         // Get classes
         $teacher = $this->school->employees->get('A269983963',['classes']);
 
 
-        // print_r(json_decode(json_encode($teacher)));
+        // // print_r(json_decode(json_encode($teacher)));
         $this->assertIsObject($teacher);
     }
 
     public function test_get_classes()
     {
-        $client = new ClientService('eb7e721ab2a10d42f56d4da4f85b5f5c5c569137:');
+        $wondeApiKey = $_ENV['WONDE_API_KEY'];
+        $wondeSchoolKey = $_ENV['WONDE_SCHOOL_KEY'];
+        $client = new ClientService($wondeApiKey);
         $request = $client->getClient();
-        $this->school = $request->school('A1930499544');
+        $this->school = $request->school($wondeSchoolKey);
         // Get classes
         $teacher = $this->school->employees->get('A269983963',['classes']);
         $classes = [];
@@ -82,9 +91,12 @@ class WondeApiTest extends TestCase
     }
     public function test_get_lessons()
     {
-        $client = new ClientService('eb7e721ab2a10d42f56d4da4f85b5f5c5c569137:');
+        $wondeApiKey = $_ENV['WONDE_API_KEY'];
+        $wondeSchoolKey = $_ENV['WONDE_SCHOOL_KEY'];
+
+        $client = new ClientService($wondeApiKey);
         $request = $client->getClient();
-        $this->school = $request->school('A1930499544');
+        $this->school = $request->school($wondeSchoolKey);
         // Get classes
         $teacher = $this->school->employees->get('A269983963',['classes']);
         $classes = [];
@@ -97,13 +109,13 @@ class WondeApiTest extends TestCase
     }
     public function test_get_students()
     {
-        $client = new ClientService('eb7e721ab2a10d42f56d4da4f85b5f5c5c569137:');
+        $wondeApiKey = $_ENV['WONDE_API_KEY'];
+        $wondeSchoolKey = $_ENV['WONDE_SCHOOL_KEY'];
+        $client = new ClientService($wondeApiKey);
         $request = $client->getClient();
-        $this->school = $request->school('A1930499544');
+        $this->school = $request->school($wondeSchoolKey);
         // Get students
         $students = $this->school->students->all();
-     
-        print_r($students);
        
         $this->assertIsObject($students);
     }

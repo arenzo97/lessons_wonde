@@ -14,7 +14,7 @@
                 <!-- Description -->
                 <div class="mx-20 py-10 text-center">
                     <p class="text-lg">
-                        Welcome! To sort the timetable, click on the column headers.
+                        Your upcoming lesson schedule, click the class name to see students in that class.
                     </p>
                 </div>
 
@@ -22,9 +22,9 @@
                 <div class="items-center justify-center mx-20">
                     <table class="border-collapse w-full"> 
                         <thead>
-                            <!-- Title and Author column headers sorts the view depending on which on is selected -->
-                            <th class="p-3 font-bold uppercase bg-blue-200 text-gray-600 border border-gray-300 hidden lg:table-cell"><a href="{{ url('/timetable/sort/title') }}">Time</a></th>
-                            <th class="p-3 font-bold uppercase bg-blue-200 text-gray-600 border border-gray-300 hidden lg:table-cell"><a href="{{ url('/timetable/sort/author') }}">Class</a></th>
+                       
+                            <th class="p-3 font-bold uppercase bg-blue-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Time</th>
+                            <th class="p-3 font-bold uppercase bg-blue-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Class</th>
                         </thead>
                         <tbody>
                         @foreach ($classes as $class)
@@ -38,7 +38,7 @@
                                 
                                 <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                 <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{{ $class['name'] }}</span>
-                                <a href="{{ url('/class', ['id' => $class['id']]) }}">{{ $class['name'] }}</a>
+                                <a href="/classes/students/{{ $class['id'] }}">{{ $class['name'] }}</a>
                                 </td>
                                 <td>
                                 </td>
